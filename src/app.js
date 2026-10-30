@@ -6,9 +6,28 @@ import { CONFIG } from './config.js';
 export function createApp() {
   const app = express();
 
-  // Basic security and parsing
   app.disable('x-powered-by');
   app.use(express.json({ limit: '1mb' }));
+
+  // Optional API key middleware
+  app.use((req, res, next) => {
+    const configuredKey = process.env.API_KEY || CONFIG.API_KEY;
+    if (!configuredKey) {
+      return next();
+    }
+
+    // /api/health is always public
+    if (req.path === '/api/health') {
+      return next();
+    }
+
+    const clientKey = req.header('x-api-key');
+    if (!clientKey || clientKey !== configuredKey) {
+      return res.status(401).json({ error: 'Unauthorized: Invalid or missing x-api-key header' });
+    }
+
+    return next();
+  });
 
   // Rate limiter: 20 requests/min per IP
   const limiter = rateLimit({

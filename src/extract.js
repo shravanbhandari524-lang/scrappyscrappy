@@ -5,19 +5,21 @@ import { normalizeUrl, isSameDomain, shouldSkipUrl, sanitizeFilename } from './u
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
- * Scrolls the page down incrementally to trigger lazy loading (capped at maxScrolls).
+ * Scrolls the page incrementally until height stops growing or maxScrolls is reached.
  */
 export async function scrollPage(page, maxScrolls = 10, delayMs = 200) {
   try {
+    let lastHeight = 0;
     for (let i = 0; i < maxScrolls; i++) {
-      const reachedBottom = await page.evaluate(() => {
-        const doc = document.documentElement;
-        const atBottom = window.innerHeight + window.scrollY >= (doc.scrollHeight || document.body.scrollHeight) - 10;
+      const currentHeight = await page.evaluate(() => {
         window.scrollBy(0, window.innerHeight || 800);
-        return atBottom;
+        return document.documentElement.scrollHeight || document.body.scrollHeight;
       });
       await sleep(delayMs);
-      if (reachedBottom) break;
+      if (currentHeight === lastHeight) {
+        break; // Height stopped growing
+      }
+      lastHeight = currentHeight;
     }
   } catch {
     // Best effort, ignore if page closed or frame detached
@@ -25,7 +27,8 @@ export async function scrollPage(page, maxScrolls = 10, delayMs = 200) {
 }
 
 /**
- * Extracts page title, meta description, headings, visible content text, and links.
+ * Extracts page title, meta description, headings, visible content text, links,
+ * page images (up to 100), and visible forms for potential LLM interaction.
  */
 export async function extractPageData(page, currentUrl, startUrl) {
   const evaluated = await page.evaluate(() => {
@@ -63,26 +66,167 @@ export async function extractPageData(page, currentUrl, startUrl) {
       text = text.slice(0, 20000);
     }
 
-    const rawHrefs = Array.from(document.querySelectorAll('a[href]'))
-      .map((a) => a.getAttribute('href') || '')
-      .filter((href) => href.trim().length > 0);
+    // Extract links and detect pagination
+    const rawLinks = Array.from(document.querySelectorAll('a[href]')).map((a) => {
+      const href = a.getAttribute('href') || '';
+      const rel = (a.getAttribute('rel') || '').toLowerCase();
+      const rawText = (a.textContent || '').trim().toLowerCase();
+      const ariaLabel = (a.getAttribute('aria-label') || '').toLowerCase();
 
-    return { title, description: description.trim(), headings, text, rawHrefs };
+      const isRelNext = rel.split(/\s+/).includes('next');
+      const isNextText =
+        rawText === 'next' ||
+        rawText === '>' ||
+        rawText === '»' ||
+        rawText === '›' ||
+        rawText === 'next page' ||
+        ariaLabel.includes('next');
+      const isPageNum = /^\d+$/.test(rawText);
+
+      return {
+        href,
+        isPagination: isRelNext || isNextText || isPageNum
+      };
+    }).filter((item) => item.href.trim().length > 0);
+
+    // Extract images (including og:image)
+    const rawImages = [];
+    const ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg && ogImg.getAttribute('content')) {
+      rawImages.push({
+        src: ogImg.getAttribute('content').trim(),
+        alt: 'og:image',
+        width: null,
+        height: null
+      });
+    }
+
+    const imgEls = Array.from(document.querySelectorAll('img'));
+    for (const img of imgEls) {
+      const src = img.currentSrc || img.getAttribute('src') || '';
+      if (!src) continue;
+      const alt = (img.getAttribute('alt') || '').trim();
+      const width = img.naturalWidth || parseInt(img.getAttribute('width'), 10) || null;
+      const height = img.naturalHeight || parseInt(img.getAttribute('height'), 10) || null;
+      rawImages.push({ src: src.trim(), alt, width, height });
+    }
+
+    // Extract visible forms
+    const rawForms = [];
+    const formEls = Array.from(document.querySelectorAll('form'));
+    formEls.forEach((form, idx) => {
+      const style = window.getComputedStyle(form);
+      if (style.display === 'none' || style.visibility === 'hidden') return;
+
+      const selector = form.id
+        ? `#${form.id}`
+        : (form.name ? `form[name="${form.name}"]` : `form:nth-of-type(${idx + 1})`);
+      const method = (form.getAttribute('method') || 'GET').toUpperCase();
+      const action = form.getAttribute('action') || '';
+
+      const fields = [];
+      const inputEls = Array.from(form.querySelectorAll('input, select, textarea'));
+      for (const el of inputEls) {
+        const tag = el.tagName.toLowerCase();
+        let type = (el.getAttribute('type') || (tag === 'textarea' ? 'textarea' : (tag === 'select' ? 'select' : 'text'))).toLowerCase();
+        if (type === 'hidden') continue;
+
+        const name = el.getAttribute('name') || el.id || '';
+        if (!name) continue;
+
+        const placeholder = el.getAttribute('placeholder') || '';
+        const required = el.hasAttribute('required');
+
+        let label = '';
+        if (el.id) {
+          const lEl = document.querySelector(`label[for="${el.id}"]`);
+          if (lEl) label = lEl.textContent.trim();
+        }
+        if (!label) {
+          const parentL = el.closest('label');
+          if (parentL) label = parentL.textContent.replace(el.textContent, '').trim();
+        }
+        if (!label && el.getAttribute('aria-label')) {
+          label = el.getAttribute('aria-label');
+        }
+
+        let options = undefined;
+        if (tag === 'select') {
+          options = Array.from(el.querySelectorAll('option'))
+            .map((o) => (o.value || o.textContent).trim())
+            .filter(Boolean);
+        }
+
+        fields.push({
+          name,
+          type,
+          label,
+          placeholder,
+          options,
+          required
+        });
+      }
+
+      if (fields.length > 0) {
+        rawForms.push({
+          selector,
+          method,
+          action,
+          fields
+        });
+      }
+    });
+
+    return { title, description: description.trim(), headings, text, rawLinks, rawImages, rawForms };
   });
 
   const internalSet = new Set();
   const externalSet = new Set();
+  const paginationSet = new Set();
 
-  for (const rawHref of evaluated.rawHrefs) {
-    const normalized = normalizeUrl(rawHref, currentUrl);
+  for (const item of evaluated.rawLinks) {
+    const normalized = normalizeUrl(item.href, currentUrl);
     if (!normalized) continue;
     if (shouldSkipUrl(normalized)) continue;
 
     if (isSameDomain(normalized, startUrl)) {
       internalSet.add(normalized);
+      if (item.isPagination) {
+        paginationSet.add(normalized);
+      }
     } else {
       externalSet.add(normalized);
     }
+  }
+
+  // Dedupe and filter images (cap at 100, skip data URIs > 200 chars)
+  const images = [];
+  const seenImageSrcs = new Set();
+
+  for (const img of evaluated.rawImages) {
+    if (images.length >= 100) break;
+
+    let resolvedSrc = null;
+    if (img.src.startsWith('data:')) {
+      if (img.src.length > 200) continue;
+      resolvedSrc = img.src;
+    } else {
+      try {
+        resolvedSrc = new URL(img.src, currentUrl).href;
+      } catch {
+        continue;
+      }
+    }
+
+    if (seenImageSrcs.has(resolvedSrc)) continue;
+    seenImageSrcs.add(resolvedSrc);
+
+    images.push({
+      src: resolvedSrc,
+      alt: img.alt || '',
+      width: typeof img.width === 'number' && !Number.isNaN(img.width) ? img.width : null,
+      height: typeof img.height === 'number' && !Number.isNaN(img.height) ? img.height : null
+    });
   }
 
   return {
@@ -93,7 +237,10 @@ export async function extractPageData(page, currentUrl, startUrl) {
     links: {
       internal: Array.from(internalSet),
       external: Array.from(externalSet)
-    }
+    },
+    images,
+    forms: evaluated.rawForms,
+    paginationLinks: paginationSet
   };
 }
 

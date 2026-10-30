@@ -2,6 +2,7 @@ import { Router } from 'express';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
+import { ZipArchive } from 'archiver';
 import { createJob, getJob, cancelJob, getJobStatusResponse } from '../jobs.js';
 import { isSafeUrlAsync, isBasicSafeUrl } from '../urlGuard.js';
 import { CONFIG } from '../config.js';
@@ -44,7 +45,18 @@ router.get('/health', async (req, res) => {
  * Start a new crawl job.
  */
 router.post('/crawl', async (req, res) => {
-  const { url, maxDepth, maxPages, screenshots, scrollPage, timeoutMs } = req.body || {};
+  const {
+    url,
+    maxDepth,
+    maxPages,
+    concurrency,
+    maxScrolls,
+    useSitemap,
+    useLLM,
+    screenshots,
+    scrollPage,
+    timeoutMs
+  } = req.body || {};
 
   if (!url || typeof url !== 'string') {
     return res.status(400).json({ error: 'Valid "url" string is required' });
@@ -59,6 +71,18 @@ router.post('/crawl', async (req, res) => {
   const asyncCheck = await isSafeUrlAsync(url);
   if (!asyncCheck.safe) {
     return res.status(400).json({ error: asyncCheck.reason });
+  }
+
+  // LLM configuration check
+  if (useLLM === true) {
+    const hasKey = Boolean(process.env.OPENAI_API_KEY || CONFIG.OPENAI_API_KEY);
+    const hasBase = Boolean(process.env.OPENAI_BASE_URL || CONFIG.OPENAI_BASE_URL);
+    const isMock = process.env.LLM_MOCK === '1';
+    if (!hasKey && !hasBase && !isMock) {
+      return res.status(400).json({
+        error: 'OPENAI_API_KEY or OPENAI_BASE_URL must be configured when useLLM is enabled'
+      });
+    }
   }
 
   // Validate caps
@@ -90,10 +114,31 @@ router.post('/crawl', async (req, res) => {
     parsedPages = p;
   }
 
+  let parsedConcurrency = CONFIG.DEFAULT_CONCURRENCY;
+  if (concurrency !== undefined) {
+    const c = parseInt(concurrency, 10);
+    if (Number.isNaN(c) || c < 1) {
+      return res.status(400).json({ error: '"concurrency" must be an integer between 1 and 5' });
+    }
+    parsedConcurrency = Math.min(CONFIG.MAX_CONCURRENCY_LIMIT, Math.max(1, c));
+  }
+
+  let parsedScrolls = 10;
+  if (maxScrolls !== undefined) {
+    const s = parseInt(maxScrolls, 10);
+    if (!Number.isNaN(s) && s >= 0) {
+      parsedScrolls = s;
+    }
+  }
+
   const job = createJob({
     url,
     maxDepth: parsedDepth,
     maxPages: parsedPages,
+    concurrency: parsedConcurrency,
+    maxScrolls: parsedScrolls,
+    useSitemap: useSitemap !== false,
+    useLLM: useLLM === true,
     screenshots: screenshots !== false,
     scrollPage: scrollPage !== false,
     timeoutMs: timeoutMs || CONFIG.HARD_JOB_TIMEOUT_MS
@@ -159,6 +204,69 @@ router.get('/crawl/:jobId/results', (req, res) => {
 });
 
 /**
+ * GET /api/crawl/:jobId/download
+ * Returns a .zip containing result.json (with relative screenshot paths) and screenshots/ folder.
+ */
+router.get('/crawl/:jobId/download', async (req, res) => {
+  const { jobId } = req.params;
+  if (!SAFE_ID_REGEX.test(jobId)) {
+    return res.status(400).json({ error: 'Invalid jobId format' });
+  }
+
+  const job = getJob(jobId);
+  if (!job) {
+    return res.status(404).json({ error: 'Job not found' });
+  }
+
+  if (job.status === 'queued' || job.status === 'running') {
+    return res.status(409).json({
+      error: 'Job not finished yet',
+      status: job.status
+    });
+  }
+
+  if (!job.result) {
+    return res.status(500).json({ error: 'Job has no results to download' });
+  }
+
+  res.attachment(`${jobId}_crawl.zip`);
+
+  const archive = new ZipArchive({ zlib: { level: 6 } });
+  archive.on('error', (err) => {
+    console.error('[Archiver Error]', err);
+    if (!res.headersSent) res.status(500).end();
+  });
+  archive.pipe(res);
+
+  // Transform result to use relative screenshot links: screenshots/<file>.png
+  const relativeResult = JSON.parse(JSON.stringify(job.result));
+  if (Array.isArray(relativeResult.pages)) {
+    for (const page of relativeResult.pages) {
+      if (page.screenshot && typeof page.screenshot === 'string') {
+        const basename = path.basename(page.screenshot);
+        page.screenshot = `screenshots/${basename}`;
+      }
+    }
+  }
+
+  archive.append(JSON.stringify(relativeResult, null, 2), { name: 'result.json' });
+
+  const jobScreenshotsDir = path.resolve(CONFIG.STORAGE_DIR, 'screenshots', jobId);
+  try {
+    const files = await fs.readdir(jobScreenshotsDir);
+    for (const file of files) {
+      if (file.endsWith('.png')) {
+        archive.file(path.join(jobScreenshotsDir, file), { name: `screenshots/${file}` });
+      }
+    }
+  } catch {
+    // Ignore missing directory if screenshots disabled
+  }
+
+  await archive.finalize();
+});
+
+/**
  * DELETE /api/crawl/:jobId
  * Cancel running or queued job.
  */
@@ -198,7 +306,6 @@ export async function serveScreenshot(req, res) {
   const baseStorage = path.resolve(CONFIG.STORAGE_DIR, 'screenshots');
   const targetFile = path.resolve(baseStorage, jobId, file);
 
-  // Path traversal check
   if (!targetFile.startsWith(baseStorage)) {
     return res.status(403).json({ error: 'Access denied' });
   }

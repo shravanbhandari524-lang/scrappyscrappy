@@ -133,7 +133,8 @@ export async function isSafeUrlAsync(urlString) {
 }
 
 /**
- * Normalizes URL: resolves against base, strips hash, normalizes trailing slash.
+ * Normalizes URL: resolves against base, strips hash, drops tracking params (utm_*, fbclid, gclid),
+ * sorts query params alphabetically, and normalizes trailing slashes.
  */
 export function normalizeUrl(rawUrl, baseUrl) {
   try {
@@ -157,6 +158,29 @@ export function normalizeUrl(rawUrl, baseUrl) {
 
     parsed.hash = '';
 
+    // Drop tracking parameters
+    const searchParams = parsed.searchParams;
+    const keysToDelete = [];
+    for (const key of searchParams.keys()) {
+      const k = key.toLowerCase();
+      if (
+        k.startsWith('utm_') ||
+        k === 'fbclid' ||
+        k === 'gclid' ||
+        k === '_ga' ||
+        k === '_gl'
+      ) {
+        keysToDelete.push(key);
+      }
+    }
+    for (const k of keysToDelete) {
+      searchParams.delete(k);
+    }
+
+    // Sort query parameters
+    searchParams.sort();
+
+    // Normalize trailing slash for non-root paths
     if (parsed.pathname.length > 1 && parsed.pathname.endsWith('/')) {
       parsed.pathname = parsed.pathname.slice(0, -1);
     }
@@ -168,7 +192,7 @@ export function normalizeUrl(rawUrl, baseUrl) {
 }
 
 /**
- * Same domain check.
+ * Checks whether two URLs belong to the same hostname / domain.
  */
 export function isSameDomain(targetUrl, baseDomainUrl) {
   try {
@@ -212,6 +236,57 @@ export function shouldSkipUrl(urlString) {
 }
 
 /**
+ * Computes crawl-trap path pattern:
+ * - Replaces digit sequences in path segments with {n}
+ * - Ignores query values (formats query keys as key={v})
+ * - Checks length limit (2000 chars) and path segment limit (10 segments)
+ */
+export function getPathPattern(urlString) {
+  try {
+    if (typeof urlString !== 'string' || urlString.length > 2000) {
+      return { valid: false, reason: 'URL exceeds 2000 characters' };
+    }
+
+    const url = new URL(urlString);
+    const segments = url.pathname.split('/').filter(Boolean);
+    if (segments.length > 10) {
+      return { valid: false, reason: 'Path has more than 10 segments' };
+    }
+
+    const patternSegments = segments.map((seg) => seg.replace(/\d+/g, '{n}'));
+    const patternPath = '/' + patternSegments.join('/');
+
+    // Query values ignored, query keys sorted
+    const queryKeys = Array.from(url.searchParams.keys()).sort();
+    const queryPattern = queryKeys.length > 0 ? '?' + queryKeys.map((k) => `${k}={v}`).join('&') : '';
+
+    return {
+      valid: true,
+      pattern: `${url.hostname}${patternPath}${queryPattern}`
+    };
+  } catch (err) {
+    return { valid: false, reason: err.message };
+  }
+}
+
+/**
+ * Checks if a URL exceeds the 50-page crawl-trap pattern cap.
+ */
+export function isCrawlTrap(urlString, patternCounts, cap = 50) {
+  const check = getPathPattern(urlString);
+  if (!check.valid) {
+    return { trap: true, reason: check.reason };
+  }
+
+  const currentCount = patternCounts.get(check.pattern) || 0;
+  if (currentCount >= cap) {
+    return { trap: true, pattern: check.pattern, reason: `Pattern "${check.pattern}" reached limit of ${cap} pages` };
+  }
+
+  return { trap: false, pattern: check.pattern };
+}
+
+/**
  * Fetches and parses robots.txt for an origin, returning allowed/disallowed status.
  */
 export async function isAllowedByRobotsTxt(urlString) {
@@ -220,30 +295,7 @@ export async function isAllowedByRobotsTxt(urlString) {
     const origin = url.origin;
 
     if (!robotsCache.has(origin)) {
-      const robotsUrl = `${origin}/robots.txt`;
-      const safety = await isSafeUrlAsync(robotsUrl);
-      if (!safety.safe) {
-        robotsCache.set(origin, null);
-      } else {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 4000);
-        try {
-          const res = await fetch(robotsUrl, {
-            signal: controller.signal,
-            headers: { 'User-Agent': 'deepcrawl/1.0' }
-          });
-          clearTimeout(timeout);
-          if (res.ok) {
-            const text = await res.text();
-            robotsCache.set(origin, parseRobotsTxt(text));
-          } else {
-            robotsCache.set(origin, null); // no robots.txt or error -> allow all
-          }
-        } catch {
-          clearTimeout(timeout);
-          robotsCache.set(origin, null);
-        }
-      }
+      await loadRobotsTxt(origin);
     }
 
     const rules = robotsCache.get(origin);
@@ -257,12 +309,52 @@ export async function isAllowedByRobotsTxt(urlString) {
 }
 
 /**
- * Minimal robots.txt parser for User-agent: * and User-agent: deepcrawl.
+ * Returns sitemap URLs found in robots.txt for an origin.
+ */
+export async function getRobotsSitemaps(origin) {
+  if (!robotsCache.has(origin)) {
+    await loadRobotsTxt(origin);
+  }
+  const rules = robotsCache.get(origin);
+  return rules?.sitemaps || [];
+}
+
+async function loadRobotsTxt(origin) {
+  const robotsUrl = `${origin}/robots.txt`;
+  const safety = await isSafeUrlAsync(robotsUrl);
+  if (!safety.safe) {
+    robotsCache.set(origin, null);
+    return;
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 4000);
+  try {
+    const res = await fetch(robotsUrl, {
+      signal: controller.signal,
+      headers: { 'User-Agent': 'deepcrawl/1.0' }
+    });
+    clearTimeout(timeout);
+    if (res.ok) {
+      const text = await res.text();
+      robotsCache.set(origin, parseRobotsTxt(text));
+    } else {
+      robotsCache.set(origin, null);
+    }
+  } catch {
+    clearTimeout(timeout);
+    robotsCache.set(origin, null);
+  }
+}
+
+/**
+ * Minimal robots.txt parser for User-agent rules and Sitemap directives.
  */
 function parseRobotsTxt(content) {
   const lines = content.split('\n');
   const disallow = [];
   const allow = [];
+  const sitemaps = [];
   let applies = false;
 
   for (let rawLine of lines) {
@@ -276,6 +368,8 @@ function parseRobotsTxt(content) {
     if (key === 'user-agent') {
       const ua = val.toLowerCase();
       applies = ua === '*' || ua === 'deepcrawl';
+    } else if (key === 'sitemap' && val) {
+      sitemaps.push(val);
     } else if (applies) {
       if (key === 'disallow' && val) {
         disallow.push(val);
@@ -285,11 +379,10 @@ function parseRobotsTxt(content) {
     }
   }
 
-  return { disallow, allow };
+  return { disallow, allow, sitemaps };
 }
 
 function isPathAllowed(rules, pathToCheck) {
-  // If specific allow matches, it overrides disallow
   for (const a of rules.allow) {
     if (pathToCheck.startsWith(a)) {
       return true;
@@ -301,6 +394,64 @@ function isPathAllowed(rules, pathToCheck) {
     }
   }
   return true;
+}
+
+/**
+ * Discovers and parses URLs from sitemap.xml and robots.txt Sitemaps (capped at maxUrls).
+ */
+export async function discoverSitemapUrls(startUrl, maxUrls = 500) {
+  const discovered = new Set();
+  try {
+    const origin = new URL(startUrl).origin;
+    const robotsSitemaps = await getRobotsSitemaps(origin);
+    const sitemapsToFetch = new Set([...robotsSitemaps, `${origin}/sitemap.xml`]);
+
+    for (const sitemapUrl of sitemapsToFetch) {
+      if (discovered.size >= maxUrls) break;
+
+      const norm = normalizeUrl(sitemapUrl);
+      if (!norm) continue;
+
+      const safe = await isSafeUrlAsync(norm);
+      if (!safe.safe) continue;
+
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 2500);
+        const res = await fetch(norm, {
+          signal: controller.signal,
+          headers: { 'User-Agent': 'deepcrawl/1.0' }
+        });
+        clearTimeout(timeout);
+        if (!res.ok) continue;
+
+        const xmlText = await res.text();
+        // Match <loc>...</loc>
+        const matches = xmlText.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/gi);
+        for (const match of matches) {
+          if (discovered.size >= maxUrls) break;
+          const locUrl = normalizeUrl(match[1]);
+          if (!locUrl) continue;
+          if (!isSameDomain(locUrl, startUrl)) continue;
+          if (shouldSkipUrl(locUrl)) continue;
+
+          // If nested sitemap XML, add to queue if room
+          if (locUrl.endsWith('.xml') && !sitemapsToFetch.has(locUrl)) {
+            sitemapsToFetch.add(locUrl);
+            continue;
+          }
+
+          discovered.add(locUrl);
+        }
+      } catch {
+        // Ignore single sitemap fetch failure
+      }
+    }
+  } catch {
+    // Ignore sitemap discovery errors
+  }
+
+  return Array.from(discovered);
 }
 
 export function sanitizeFilename(urlStr, index) {
