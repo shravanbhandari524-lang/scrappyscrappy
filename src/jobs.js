@@ -75,6 +75,7 @@ export function createJob(options) {
       concurrency: options.concurrency,
       maxScrolls: options.maxScrolls,
       useSitemap: options.useSitemap !== false,
+      useLLM: options.useLLM === true,
       screenshots: options.screenshots !== false,
       scrollPage: options.scrollPage !== false,
       navigationTimeoutMs: options.navigationTimeoutMs || 30000

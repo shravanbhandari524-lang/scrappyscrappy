@@ -1,45 +1,220 @@
 {
-  "startUrl": "https://example.com/",
+  "startUrl": "https://quotes.toscrape.com/search.aspx",
   "stopReason": "maxPages",
   "partial": true,
   "summary": {
-    "pagesVisited": 1,
+    "pagesVisited": 4,
     "failed": 0,
-    "maxDepthReached": 0,
+    "maxDepthReached": 1,
     "blockedRequests": 0,
-    "llmCalls": 0,
-    "llmSubmits": 0
+    "llmCalls": 2,
+    "llmSubmits": 1
   },
   "errors": [],
   "pages": [
     {
-      "url": "https://example.com/",
-      "finalUrl": "https://example.com/",
+      "url": "https://quotes.toscrape.com/filter.aspx",
+      "finalUrl": "https://quotes.toscrape.com/filter.aspx",
       "statusCode": 200,
-      "title": "Example Domain",
+      "title": "Quotes to Scrape",
       "description": "",
       "headings": {
-        "h1": [],
+        "h1": [
+          "Quotes to Scrape"
+        ],
         "h2": [],
         "h3": []
       },
-      "text": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.هذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。L’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable. Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.Данный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.Este dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.Learn more",
+      "text": "Quotes to Scrape\n Login\n Author\n ----------\n Albert Einstein\n J.K. Rowling\n Jane Austen\n Marilyn Monroe\n André Gide\n Thomas A. Edison\n Eleanor Roosevelt\n Steve Martin\n Bob Marley\n Dr. Seuss\n Douglas Adams\n Elie Wiesel\n Friedrich Nietzsche\n Mark Twain\n Allen Saunders\n Pablo Neruda\n Ralph Waldo Emerson\n Mother Teresa\n Garrison Keillor\n Jim Henson\n Charles M. Schulz\n William Nicholson\n Jorge Luis Borges\n George Eliot\n George R.R. Martin\n C.S. Lewis\n Martin Luther King Jr.\n James Baldwin\n Haruki Murakami\n Alexandre Dumas fils\n Stephenie Meyer\n Ernest Hemingway\n Helen Keller\n George Bernard Shaw\n Charles Bukowski\n Suzanne Collins\n J.R.R. Tolkien\n Alfred Tennyson\n Terry Pratchett\n J.D. Salinger\n George Carlin\n John Lennon\n W.C. Fields\n Jimi Hendrix\n J.M. Barrie\n E.E. Cummings\n Khaled Hosseini\n Harper Lee\n Madeleine L'Engle\n Tag\n ----------\n change\n deep-thoughts\n thinking\n world\n inspirational\n life\n live\n miracle\n miracles\n adulthood\n success\n value\n simplicity\n understand\n children\n fairy-tales\n imagination\n knowledge\n learning\n understanding\n wisdom\n simile\n music\n mistakes",
       "images": [],
       "links": {
-        "internal": [],
+        "internal": [
+          "https://quotes.toscrape.com/",
+          "https://quotes.toscrape.com/login"
+        ],
         "external": [
-          "https://iana.org/help/example-domains"
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 1,
+      "parentUrl": "https://quotes.toscrape.com/search.aspx",
+      "screenshot": "/screenshots/cli/002_quotes_toscrape_com_filter_aspx.png",
+      "errors": [],
+      "llmActions": []
+    },
+    {
+      "url": "https://quotes.toscrape.com/search.aspx",
+      "finalUrl": "https://quotes.toscrape.com/search.aspx",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [],
+        "h3": []
+      },
+      "text": "Quotes to Scrape\n Login\n Author\n ----------\n Albert Einstein\n J.K. Rowling\n Jane Austen\n Marilyn Monroe\n André Gide\n Thomas A. Edison\n Eleanor Roosevelt\n Steve Martin\n Bob Marley\n Dr. Seuss\n Douglas Adams\n Elie Wiesel\n Friedrich Nietzsche\n Mark Twain\n Allen Saunders\n Pablo Neruda\n Ralph Waldo Emerson\n Mother Teresa\n Garrison Keillor\n Jim Henson\n Charles M. Schulz\n William Nicholson\n Jorge Luis Borges\n George Eliot\n George R.R. Martin\n C.S. Lewis\n Martin Luther King Jr.\n James Baldwin\n Haruki Murakami\n Alexandre Dumas fils\n Stephenie Meyer\n Ernest Hemingway\n Helen Keller\n George Bernard Shaw\n Charles Bukowski\n Suzanne Collins\n J.R.R. Tolkien\n Alfred Tennyson\n Terry Pratchett\n J.D. Salinger\n George Carlin\n John Lennon\n W.C. Fields\n Jimi Hendrix\n J.M. Barrie\n E.E. Cummings\n Khaled Hosseini\n Harper Lee\n Madeleine L'Engle\n Tag\n ----------",
+      "images": [],
+      "links": {
+        "internal": [
+          "https://quotes.toscrape.com/",
+          "https://quotes.toscrape.com/login"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
         ]
       },
       "depth": 0,
       "parentUrl": null,
-      "screenshot": "/screenshots/cli/001_example_com_.png",
+      "screenshot": "/screenshots/cli/001_quotes_toscrape_com_search_aspx.png",
+      "errors": [],
+      "llmActions": [
+        {
+          "formSelector": "form[name=\"filterform\"]",
+          "valuesUsed": {
+            "author": "Albert Einstein"
+          },
+          "resultUrl": "https://quotes.toscrape.com/filter.aspx",
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/login",
+      "finalUrl": "https://quotes.toscrape.com/login",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [],
+        "h3": []
+      },
+      "text": "Quotes to Scrape\n Login\n Username\n Password",
+      "images": [],
+      "links": {
+        "internal": [
+          "https://quotes.toscrape.com/",
+          "https://quotes.toscrape.com/login"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 1,
+      "parentUrl": "https://quotes.toscrape.com/search.aspx",
+      "screenshot": "/screenshots/cli/003_quotes_toscrape_com_login.png",
+      "errors": [],
+      "llmActions": [
+        {
+          "formSelector": "form:nth-of-type(1)",
+          "status": "skipped",
+          "reason": "Contains forbidden field type: password"
+        }
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/",
+      "finalUrl": "https://quotes.toscrape.com/",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [
+          "Top Ten tags"
+        ],
+        "h3": []
+      },
+      "text": "Quotes to Scrape\n Login\n “The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”\n by Albert Einstein\n (about)\n Tags:\n change\n deep-thoughts\n thinking\n world\n “It is our choices, Harry, that show what we truly are, far more than our abilities.”\n by J.K. Rowling\n (about)\n Tags:\n abilities\n choices\n “There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”\n by Albert Einstein\n (about)\n Tags:\n inspirational\n life\n live\n miracle\n miracles\n “The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”\n by Jane Austen\n (about)\n Tags:\n aliteracy\n books\n classic\n humor\n “Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring.”\n by Marilyn Monroe\n (about)\n Tags:\n be-yourself\n inspirational\n “Try not to become a man of success. Rather become a man of value.”\n by Albert Einstein\n (about)\n Tags:\n adulthood\n success\n value\n “It is better to be hated for what you are than to be loved for what you are not.”\n by André Gide\n (about)\n Tags:\n life\n love\n “I have not failed. I've just found 10,000 ways that won't work.”\n by Thomas A. Edison\n (about)\n Tags:\n edison\n failure\n inspirational\n paraphrased\n “A woman is like a tea bag; you never know how strong it is until it's in hot water.”\n by Eleanor Roosevelt\n (about)\n Tags:\n misattributed-eleanor-roosevelt\n “A day without sunshine is like, you know, night.”\n by Steve Martin\n (about)\n Tags:\n humor\n obvious\n simile\n Top Ten tags\n love\n inspirational\n life\n humor\n books\n reading\n friendship\n friends\n truth\n simile",
+      "images": [],
+      "links": {
+        "internal": [
+          "https://quotes.toscrape.com/",
+          "https://quotes.toscrape.com/login",
+          "https://quotes.toscrape.com/author/Albert-Einstein",
+          "https://quotes.toscrape.com/tag/change/page/1",
+          "https://quotes.toscrape.com/tag/deep-thoughts/page/1",
+          "https://quotes.toscrape.com/tag/thinking/page/1",
+          "https://quotes.toscrape.com/tag/world/page/1",
+          "https://quotes.toscrape.com/author/J-K-Rowling",
+          "https://quotes.toscrape.com/tag/abilities/page/1",
+          "https://quotes.toscrape.com/tag/choices/page/1",
+          "https://quotes.toscrape.com/tag/inspirational/page/1",
+          "https://quotes.toscrape.com/tag/life/page/1",
+          "https://quotes.toscrape.com/tag/live/page/1",
+          "https://quotes.toscrape.com/tag/miracle/page/1",
+          "https://quotes.toscrape.com/tag/miracles/page/1",
+          "https://quotes.toscrape.com/author/Jane-Austen",
+          "https://quotes.toscrape.com/tag/aliteracy/page/1",
+          "https://quotes.toscrape.com/tag/books/page/1",
+          "https://quotes.toscrape.com/tag/classic/page/1",
+          "https://quotes.toscrape.com/tag/humor/page/1",
+          "https://quotes.toscrape.com/author/Marilyn-Monroe",
+          "https://quotes.toscrape.com/tag/be-yourself/page/1",
+          "https://quotes.toscrape.com/tag/adulthood/page/1",
+          "https://quotes.toscrape.com/tag/success/page/1",
+          "https://quotes.toscrape.com/tag/value/page/1",
+          "https://quotes.toscrape.com/author/Andre-Gide",
+          "https://quotes.toscrape.com/tag/love/page/1",
+          "https://quotes.toscrape.com/author/Thomas-A-Edison",
+          "https://quotes.toscrape.com/tag/edison/page/1",
+          "https://quotes.toscrape.com/tag/failure/page/1",
+          "https://quotes.toscrape.com/tag/paraphrased/page/1",
+          "https://quotes.toscrape.com/author/Eleanor-Roosevelt",
+          "https://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1",
+          "https://quotes.toscrape.com/author/Steve-Martin",
+          "https://quotes.toscrape.com/tag/obvious/page/1",
+          "https://quotes.toscrape.com/tag/simile/page/1",
+          "https://quotes.toscrape.com/page/2",
+          "https://quotes.toscrape.com/tag/love",
+          "https://quotes.toscrape.com/tag/inspirational",
+          "https://quotes.toscrape.com/tag/life",
+          "https://quotes.toscrape.com/tag/humor",
+          "https://quotes.toscrape.com/tag/books",
+          "https://quotes.toscrape.com/tag/reading",
+          "https://quotes.toscrape.com/tag/friendship",
+          "https://quotes.toscrape.com/tag/friends",
+          "https://quotes.toscrape.com/tag/truth",
+          "https://quotes.toscrape.com/tag/simile"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 1,
+      "parentUrl": "https://quotes.toscrape.com/search.aspx",
+      "screenshot": "/screenshots/cli/003_quotes_toscrape_com_.png",
       "errors": [],
       "llmActions": []
     }
   ],
   "tree": {
-    "url": "https://example.com/",
-    "children": []
+    "url": "https://quotes.toscrape.com/filter.aspx",
+    "children": [
+      {
+        "url": "https://quotes.toscrape.com/search.aspx",
+        "children": [
+          {
+            "url": "https://quotes.toscrape.com/login",
+            "children": []
+          },
+          {
+            "url": "https://quotes.toscrape.com/",
+            "children": []
+          }
+        ]
+      }
+    ]
   }
 }

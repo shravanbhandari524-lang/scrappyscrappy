@@ -1,3 +1,9 @@
+try {
+  process.loadEnvFile?.();
+} catch {
+  // Ignore if .env is missing or invalid
+}
+
 export const CONFIG = {
   PORT: parseInt(process.env.PORT, 10) || 3000,
   API_KEY: process.env.API_KEY || null,
