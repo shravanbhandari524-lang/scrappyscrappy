@@ -1,0 +1,22 @@
+{
+  "name": "deepcrawl",
+  "version": "1.0.0",
+  "description": "Simple CLI and API web crawler using Playwright and Express",
+  "type": "module",
+  "scripts": {
+    "start": "node src/crawl.js",
+    "server": "node src/server.js"
+  },
+  "keywords": [
+    "crawler",
+    "scraper",
+    "playwright",
+    "express"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.2",
+    "playwright": "^1.64.1"
+  }
+}

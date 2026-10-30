@@ -1,0 +1,189 @@
+{
+  "startUrl": "https://quotes.toscrape.com/js",
+  "summary": {
+    "pagesVisited": 4,
+    "failed": 0,
+    "maxDepthReached": 1
+  },
+  "pages": [
+    {
+      "url": "https://quotes.toscrape.com/js",
+      "finalUrl": "http://quotes.toscrape.com/js",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [],
+        "h3": []
+      },
+      "links": {
+        "internal": [
+          "http://quotes.toscrape.com/",
+          "http://quotes.toscrape.com/login",
+          "http://quotes.toscrape.com/js/page/2"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 0,
+      "parentUrl": null,
+      "screenshot": "output/screenshots/001_quotes_toscrape_com_js.png",
+      "errors": []
+    },
+    {
+      "url": "http://quotes.toscrape.com/",
+      "finalUrl": "http://quotes.toscrape.com/",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [
+          "Top Ten tags"
+        ],
+        "h3": []
+      },
+      "links": {
+        "internal": [
+          "http://quotes.toscrape.com/",
+          "http://quotes.toscrape.com/login",
+          "http://quotes.toscrape.com/author/Albert-Einstein",
+          "http://quotes.toscrape.com/tag/change/page/1",
+          "http://quotes.toscrape.com/tag/deep-thoughts/page/1",
+          "http://quotes.toscrape.com/tag/thinking/page/1",
+          "http://quotes.toscrape.com/tag/world/page/1",
+          "http://quotes.toscrape.com/author/J-K-Rowling",
+          "http://quotes.toscrape.com/tag/abilities/page/1",
+          "http://quotes.toscrape.com/tag/choices/page/1",
+          "http://quotes.toscrape.com/tag/inspirational/page/1",
+          "http://quotes.toscrape.com/tag/life/page/1",
+          "http://quotes.toscrape.com/tag/live/page/1",
+          "http://quotes.toscrape.com/tag/miracle/page/1",
+          "http://quotes.toscrape.com/tag/miracles/page/1",
+          "http://quotes.toscrape.com/author/Jane-Austen",
+          "http://quotes.toscrape.com/tag/aliteracy/page/1",
+          "http://quotes.toscrape.com/tag/books/page/1",
+          "http://quotes.toscrape.com/tag/classic/page/1",
+          "http://quotes.toscrape.com/tag/humor/page/1",
+          "http://quotes.toscrape.com/author/Marilyn-Monroe",
+          "http://quotes.toscrape.com/tag/be-yourself/page/1",
+          "http://quotes.toscrape.com/tag/adulthood/page/1",
+          "http://quotes.toscrape.com/tag/success/page/1",
+          "http://quotes.toscrape.com/tag/value/page/1",
+          "http://quotes.toscrape.com/author/Andre-Gide",
+          "http://quotes.toscrape.com/tag/love/page/1",
+          "http://quotes.toscrape.com/author/Thomas-A-Edison",
+          "http://quotes.toscrape.com/tag/edison/page/1",
+          "http://quotes.toscrape.com/tag/failure/page/1",
+          "http://quotes.toscrape.com/tag/paraphrased/page/1",
+          "http://quotes.toscrape.com/author/Eleanor-Roosevelt",
+          "http://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1",
+          "http://quotes.toscrape.com/author/Steve-Martin",
+          "http://quotes.toscrape.com/tag/obvious/page/1",
+          "http://quotes.toscrape.com/tag/simile/page/1",
+          "http://quotes.toscrape.com/page/2",
+          "http://quotes.toscrape.com/tag/love",
+          "http://quotes.toscrape.com/tag/inspirational",
+          "http://quotes.toscrape.com/tag/life",
+          "http://quotes.toscrape.com/tag/humor",
+          "http://quotes.toscrape.com/tag/books",
+          "http://quotes.toscrape.com/tag/reading",
+          "http://quotes.toscrape.com/tag/friendship",
+          "http://quotes.toscrape.com/tag/friends",
+          "http://quotes.toscrape.com/tag/truth",
+          "http://quotes.toscrape.com/tag/simile"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 1,
+      "parentUrl": "https://quotes.toscrape.com/js",
+      "screenshot": "output/screenshots/002_quotes_toscrape_com_.png",
+      "errors": []
+    },
+    {
+      "url": "http://quotes.toscrape.com/login",
+      "finalUrl": "http://quotes.toscrape.com/login",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [],
+        "h3": []
+      },
+      "links": {
+        "internal": [
+          "http://quotes.toscrape.com/",
+          "http://quotes.toscrape.com/login"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 1,
+      "parentUrl": "https://quotes.toscrape.com/js",
+      "screenshot": "output/screenshots/003_quotes_toscrape_com_login.png",
+      "errors": []
+    },
+    {
+      "url": "http://quotes.toscrape.com/js/page/2",
+      "finalUrl": "http://quotes.toscrape.com/js/page/2",
+      "statusCode": 200,
+      "title": "Quotes to Scrape",
+      "description": "",
+      "headings": {
+        "h1": [
+          "Quotes to Scrape"
+        ],
+        "h2": [],
+        "h3": []
+      },
+      "links": {
+        "internal": [
+          "http://quotes.toscrape.com/",
+          "http://quotes.toscrape.com/login",
+          "http://quotes.toscrape.com/js/page/1",
+          "http://quotes.toscrape.com/js/page/3"
+        ],
+        "external": [
+          "https://www.goodreads.com/quotes",
+          "https://www.zyte.com/"
+        ]
+      },
+      "depth": 1,
+      "parentUrl": "https://quotes.toscrape.com/js",
+      "screenshot": "output/screenshots/004_quotes_toscrape_com_js_page_2.png",
+      "errors": []
+    }
+  ],
+  "tree": {
+    "url": "https://quotes.toscrape.com/js",
+    "children": [
+      {
+        "url": "http://quotes.toscrape.com/",
+        "children": []
+      },
+      {
+        "url": "http://quotes.toscrape.com/login",
+        "children": []
+      },
+      {
+        "url": "http://quotes.toscrape.com/js/page/2",
+        "children": []
+      }
+    ]
+  }
+}

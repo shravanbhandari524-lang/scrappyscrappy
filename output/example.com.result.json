@@ -1,0 +1,36 @@
+{
+  "startUrl": "https://example.com/",
+  "summary": {
+    "pagesVisited": 1,
+    "failed": 0,
+    "maxDepthReached": 0
+  },
+  "pages": [
+    {
+      "url": "https://example.com/",
+      "finalUrl": "https://example.com/",
+      "statusCode": 200,
+      "title": "Example Domain",
+      "description": "",
+      "headings": {
+        "h1": [],
+        "h2": [],
+        "h3": []
+      },
+      "links": {
+        "internal": [],
+        "external": [
+          "https://iana.org/help/example-domains"
+        ]
+      },
+      "depth": 0,
+      "parentUrl": null,
+      "screenshot": "output/screenshots/001_example_com_.png",
+      "errors": []
+    }
+  ],
+  "tree": {
+    "url": "https://example.com/",
+    "children": []
+  }
+}
