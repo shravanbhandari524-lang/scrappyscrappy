@@ -1,219 +1,506 @@
 {
-  "startUrl": "https://quotes.toscrape.com/search.aspx",
+  "startUrl": "https://books.toscrape.com/",
   "stopReason": "maxPages",
   "partial": true,
   "summary": {
-    "pagesVisited": 4,
+    "pagesVisited": 2,
     "failed": 0,
     "maxDepthReached": 1,
     "blockedRequests": 0,
-    "llmCalls": 2,
-    "llmSubmits": 1
+    "llmCalls": 0,
+    "llmSubmits": 0
   },
   "errors": [],
   "pages": [
     {
-      "url": "https://quotes.toscrape.com/filter.aspx",
-      "finalUrl": "https://quotes.toscrape.com/filter.aspx",
+      "url": "https://books.toscrape.com/",
+      "finalUrl": "https://books.toscrape.com/",
       "statusCode": 200,
-      "title": "Quotes to Scrape",
+      "title": "All products | Books to Scrape - Sandbox",
       "description": "",
       "headings": {
         "h1": [
-          "Quotes to Scrape"
+          "All products"
         ],
         "h2": [],
-        "h3": []
-      },
-      "text": "Quotes to Scrape\n Login\n Author\n ----------\n Albert Einstein\n J.K. Rowling\n Jane Austen\n Marilyn Monroe\n André Gide\n Thomas A. Edison\n Eleanor Roosevelt\n Steve Martin\n Bob Marley\n Dr. Seuss\n Douglas Adams\n Elie Wiesel\n Friedrich Nietzsche\n Mark Twain\n Allen Saunders\n Pablo Neruda\n Ralph Waldo Emerson\n Mother Teresa\n Garrison Keillor\n Jim Henson\n Charles M. Schulz\n William Nicholson\n Jorge Luis Borges\n George Eliot\n George R.R. Martin\n C.S. Lewis\n Martin Luther King Jr.\n James Baldwin\n Haruki Murakami\n Alexandre Dumas fils\n Stephenie Meyer\n Ernest Hemingway\n Helen Keller\n George Bernard Shaw\n Charles Bukowski\n Suzanne Collins\n J.R.R. Tolkien\n Alfred Tennyson\n Terry Pratchett\n J.D. Salinger\n George Carlin\n John Lennon\n W.C. Fields\n Jimi Hendrix\n J.M. Barrie\n E.E. Cummings\n Khaled Hosseini\n Harper Lee\n Madeleine L'Engle\n Tag\n ----------\n change\n deep-thoughts\n thinking\n world\n inspirational\n life\n live\n miracle\n miracles\n adulthood\n success\n value\n simplicity\n understand\n children\n fairy-tales\n imagination\n knowledge\n learning\n understanding\n wisdom\n simile\n music\n mistakes",
-      "images": [],
-      "links": {
-        "internal": [
-          "https://quotes.toscrape.com/",
-          "https://quotes.toscrape.com/login"
-        ],
-        "external": [
-          "https://www.goodreads.com/quotes",
-          "https://www.zyte.com/"
+        "h3": [
+          "A Light in the ...",
+          "Tipping the Velvet",
+          "Soumission",
+          "Sharp Objects",
+          "Sapiens: A Brief History ...",
+          "The Requiem Red",
+          "The Dirty Little Secrets ...",
+          "The Coming Woman: A ...",
+          "The Boys in the ...",
+          "The Black Maria",
+          "Starving Hearts (Triangular Trade ...",
+          "Shakespeare's Sonnets",
+          "Set Me Free",
+          "Scott Pilgrim's Precious Little ...",
+          "Rip it Up and ...",
+          "Our Band Could Be ...",
+          "Olio",
+          "Mesaerion: The Best Science ...",
+          "Libertarianism for Beginners",
+          "It's Only the Himalayas"
         ]
       },
-      "depth": 1,
-      "parentUrl": "https://quotes.toscrape.com/search.aspx",
-      "screenshot": "/screenshots/cli/002_quotes_toscrape_com_filter_aspx.png",
+      "text": "A Light in the ...\n £51.77\n In stock\n Add to basket",
+      "images": [
+        {
+          "src": "https://books.toscrape.com/media/cache/2c/da/2cdad67c44b002e7ead0cc35693c0e8b.jpg",
+          "alt": "A Light in the Attic",
+          "width": 125,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/26/0c/260c6ae16bce31c8f8c95daddd9f4a1c.jpg",
+          "alt": "Tipping the Velvet",
+          "width": 99,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/3e/ef/3eef99c9d9adef34639f510662022830.jpg",
+          "alt": "Soumission",
+          "width": 101,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/32/51/3251cf3a3412f53f339e42cac2134093.jpg",
+          "alt": "Sharp Objects",
+          "width": 116,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/be/a5/bea5697f2534a2f86a3ef27b5a8c12a6.jpg",
+          "alt": "Sapiens: A Brief History of Humankind",
+          "width": 102,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/68/33/68339b4c9bc034267e1da611ab3b34f8.jpg",
+          "alt": "The Requiem Red",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/92/27/92274a95b7c251fea59a2b8a78275ab4.jpg",
+          "alt": "The Dirty Little Secrets of Getting Your Dream Job",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/3d/54/3d54940e57e662c4dd1f3ff00c78cc64.jpg",
+          "alt": "The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/66/88/66883b91f6804b2323c8369331cb7dd1.jpg",
+          "alt": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
+          "width": 102,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/58/46/5846057e28022268153beff6d352b06c.jpg",
+          "alt": "The Black Maria",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/be/f4/bef44da28c98f905a3ebec0b87be8530.jpg",
+          "alt": "Starving Hearts (Triangular Trade Trilogy, #1)",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/10/48/1048f63d3b5061cd2f424d20b3f9b666.jpg",
+          "alt": "Shakespeare's Sonnets",
+          "width": 91,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/5b/88/5b88c52633f53cacf162c15f4f823153.jpg",
+          "alt": "Set Me Free",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/94/b1/94b1b8b244bce9677c2f29ccc890d4d2.jpg",
+          "alt": "Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/81/c4/81c4a973364e17d01f217e1188253d5e.jpg",
+          "alt": "Rip it Up and Start Again",
+          "width": 98,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/54/60/54607fe8945897cdcced0044103b10b6.jpg",
+          "alt": "Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991",
+          "width": 103,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/55/33/553310a7162dfbc2c6d19a84da0df9e1.jpg",
+          "alt": "Olio",
+          "width": 117,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/09/a3/09a3aef48557576e1a85ba7efea8ecb7.jpg",
+          "alt": "Mesaerion: The Best Science Fiction Stories 1800-1849",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/0b/bc/0bbcd0a6f4bcd81ccb1049a52736406e.jpg",
+          "alt": "Libertarianism for Beginners",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg",
+          "alt": "It's Only the Himalayas",
+          "width": 106,
+          "height": 155
+        }
+      ],
+      "links": {
+        "internal": [
+          "https://books.toscrape.com/index.html",
+          "https://books.toscrape.com/catalogue/category/books_1/index.html",
+          "https://books.toscrape.com/catalogue/category/books/travel_2/index.html",
+          "https://books.toscrape.com/catalogue/category/books/mystery_3/index.html",
+          "https://books.toscrape.com/catalogue/category/books/historical-fiction_4/index.html",
+          "https://books.toscrape.com/catalogue/category/books/sequential-art_5/index.html",
+          "https://books.toscrape.com/catalogue/category/books/classics_6/index.html",
+          "https://books.toscrape.com/catalogue/category/books/philosophy_7/index.html",
+          "https://books.toscrape.com/catalogue/category/books/romance_8/index.html",
+          "https://books.toscrape.com/catalogue/category/books/womens-fiction_9/index.html",
+          "https://books.toscrape.com/catalogue/category/books/fiction_10/index.html",
+          "https://books.toscrape.com/catalogue/category/books/childrens_11/index.html",
+          "https://books.toscrape.com/catalogue/category/books/religion_12/index.html",
+          "https://books.toscrape.com/catalogue/category/books/nonfiction_13/index.html",
+          "https://books.toscrape.com/catalogue/category/books/music_14/index.html",
+          "https://books.toscrape.com/catalogue/category/books/default_15/index.html",
+          "https://books.toscrape.com/catalogue/category/books/science-fiction_16/index.html",
+          "https://books.toscrape.com/catalogue/category/books/sports-and-games_17/index.html",
+          "https://books.toscrape.com/catalogue/category/books/add-a-comment_18/index.html",
+          "https://books.toscrape.com/catalogue/category/books/fantasy_19/index.html",
+          "https://books.toscrape.com/catalogue/category/books/new-adult_20/index.html",
+          "https://books.toscrape.com/catalogue/category/books/young-adult_21/index.html",
+          "https://books.toscrape.com/catalogue/category/books/science_22/index.html",
+          "https://books.toscrape.com/catalogue/category/books/poetry_23/index.html",
+          "https://books.toscrape.com/catalogue/category/books/paranormal_24/index.html",
+          "https://books.toscrape.com/catalogue/category/books/art_25/index.html",
+          "https://books.toscrape.com/catalogue/category/books/psychology_26/index.html",
+          "https://books.toscrape.com/catalogue/category/books/autobiography_27/index.html",
+          "https://books.toscrape.com/catalogue/category/books/parenting_28/index.html",
+          "https://books.toscrape.com/catalogue/category/books/adult-fiction_29/index.html",
+          "https://books.toscrape.com/catalogue/category/books/humor_30/index.html",
+          "https://books.toscrape.com/catalogue/category/books/horror_31/index.html",
+          "https://books.toscrape.com/catalogue/category/books/history_32/index.html",
+          "https://books.toscrape.com/catalogue/category/books/food-and-drink_33/index.html",
+          "https://books.toscrape.com/catalogue/category/books/christian-fiction_34/index.html",
+          "https://books.toscrape.com/catalogue/category/books/business_35/index.html",
+          "https://books.toscrape.com/catalogue/category/books/biography_36/index.html",
+          "https://books.toscrape.com/catalogue/category/books/thriller_37/index.html",
+          "https://books.toscrape.com/catalogue/category/books/contemporary_38/index.html",
+          "https://books.toscrape.com/catalogue/category/books/spirituality_39/index.html",
+          "https://books.toscrape.com/catalogue/category/books/academic_40/index.html",
+          "https://books.toscrape.com/catalogue/category/books/self-help_41/index.html",
+          "https://books.toscrape.com/catalogue/category/books/historical_42/index.html",
+          "https://books.toscrape.com/catalogue/category/books/christian_43/index.html",
+          "https://books.toscrape.com/catalogue/category/books/suspense_44/index.html",
+          "https://books.toscrape.com/catalogue/category/books/short-stories_45/index.html",
+          "https://books.toscrape.com/catalogue/category/books/novels_46/index.html",
+          "https://books.toscrape.com/catalogue/category/books/health_47/index.html",
+          "https://books.toscrape.com/catalogue/category/books/politics_48/index.html",
+          "https://books.toscrape.com/catalogue/category/books/cultural_49/index.html",
+          "https://books.toscrape.com/catalogue/category/books/erotica_50/index.html",
+          "https://books.toscrape.com/catalogue/category/books/crime_51/index.html",
+          "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+          "https://books.toscrape.com/catalogue/tipping-the-velvet_999/index.html",
+          "https://books.toscrape.com/catalogue/soumission_998/index.html",
+          "https://books.toscrape.com/catalogue/sharp-objects_997/index.html",
+          "https://books.toscrape.com/catalogue/sapiens-a-brief-history-of-humankind_996/index.html",
+          "https://books.toscrape.com/catalogue/the-requiem-red_995/index.html",
+          "https://books.toscrape.com/catalogue/the-dirty-little-secrets-of-getting-your-dream-job_994/index.html",
+          "https://books.toscrape.com/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html",
+          "https://books.toscrape.com/catalogue/the-boys-in-the-boat-nine-americans-and-their-epic-quest-for-gold-at-the-1936-berlin-olympics_992/index.html",
+          "https://books.toscrape.com/catalogue/the-black-maria_991/index.html",
+          "https://books.toscrape.com/catalogue/starving-hearts-triangular-trade-trilogy-1_990/index.html",
+          "https://books.toscrape.com/catalogue/shakespeares-sonnets_989/index.html",
+          "https://books.toscrape.com/catalogue/set-me-free_988/index.html",
+          "https://books.toscrape.com/catalogue/scott-pilgrims-precious-little-life-scott-pilgrim-1_987/index.html",
+          "https://books.toscrape.com/catalogue/rip-it-up-and-start-again_986/index.html",
+          "https://books.toscrape.com/catalogue/our-band-could-be-your-life-scenes-from-the-american-indie-underground-1981-1991_985/index.html",
+          "https://books.toscrape.com/catalogue/olio_984/index.html",
+          "https://books.toscrape.com/catalogue/mesaerion-the-best-science-fiction-stories-1800-1849_983/index.html",
+          "https://books.toscrape.com/catalogue/libertarianism-for-beginners_982/index.html",
+          "https://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html",
+          "https://books.toscrape.com/catalogue/page-2.html"
+        ],
+        "external": []
+      },
+      "depth": 0,
+      "parentUrl": null,
+      "screenshot": "/screenshots/cli/001_books_toscrape_com_.png",
       "errors": [],
       "llmActions": []
     },
     {
-      "url": "https://quotes.toscrape.com/search.aspx",
-      "finalUrl": "https://quotes.toscrape.com/search.aspx",
+      "url": "https://books.toscrape.com/index.html",
+      "finalUrl": "https://books.toscrape.com/index.html",
       "statusCode": 200,
-      "title": "Quotes to Scrape",
+      "title": "All products | Books to Scrape - Sandbox",
       "description": "",
       "headings": {
         "h1": [
-          "Quotes to Scrape"
+          "All products"
         ],
         "h2": [],
-        "h3": []
-      },
-      "text": "Quotes to Scrape\n Login\n Author\n ----------\n Albert Einstein\n J.K. Rowling\n Jane Austen\n Marilyn Monroe\n André Gide\n Thomas A. Edison\n Eleanor Roosevelt\n Steve Martin\n Bob Marley\n Dr. Seuss\n Douglas Adams\n Elie Wiesel\n Friedrich Nietzsche\n Mark Twain\n Allen Saunders\n Pablo Neruda\n Ralph Waldo Emerson\n Mother Teresa\n Garrison Keillor\n Jim Henson\n Charles M. Schulz\n William Nicholson\n Jorge Luis Borges\n George Eliot\n George R.R. Martin\n C.S. Lewis\n Martin Luther King Jr.\n James Baldwin\n Haruki Murakami\n Alexandre Dumas fils\n Stephenie Meyer\n Ernest Hemingway\n Helen Keller\n George Bernard Shaw\n Charles Bukowski\n Suzanne Collins\n J.R.R. Tolkien\n Alfred Tennyson\n Terry Pratchett\n J.D. Salinger\n George Carlin\n John Lennon\n W.C. Fields\n Jimi Hendrix\n J.M. Barrie\n E.E. Cummings\n Khaled Hosseini\n Harper Lee\n Madeleine L'Engle\n Tag\n ----------",
-      "images": [],
-      "links": {
-        "internal": [
-          "https://quotes.toscrape.com/",
-          "https://quotes.toscrape.com/login"
-        ],
-        "external": [
-          "https://www.goodreads.com/quotes",
-          "https://www.zyte.com/"
+        "h3": [
+          "A Light in the ...",
+          "Tipping the Velvet",
+          "Soumission",
+          "Sharp Objects",
+          "Sapiens: A Brief History ...",
+          "The Requiem Red",
+          "The Dirty Little Secrets ...",
+          "The Coming Woman: A ...",
+          "The Boys in the ...",
+          "The Black Maria",
+          "Starving Hearts (Triangular Trade ...",
+          "Shakespeare's Sonnets",
+          "Set Me Free",
+          "Scott Pilgrim's Precious Little ...",
+          "Rip it Up and ...",
+          "Our Band Could Be ...",
+          "Olio",
+          "Mesaerion: The Best Science ...",
+          "Libertarianism for Beginners",
+          "It's Only the Himalayas"
         ]
       },
-      "depth": 0,
-      "parentUrl": null,
-      "screenshot": "/screenshots/cli/001_quotes_toscrape_com_search_aspx.png",
-      "errors": [],
-      "llmActions": [
+      "text": "A Light in the ...\n £51.77\n In stock\n Add to basket",
+      "images": [
         {
-          "formSelector": "form[name=\"filterform\"]",
-          "valuesUsed": {
-            "author": "Albert Einstein"
-          },
-          "resultUrl": "https://quotes.toscrape.com/filter.aspx",
-          "status": "success"
+          "src": "https://books.toscrape.com/media/cache/2c/da/2cdad67c44b002e7ead0cc35693c0e8b.jpg",
+          "alt": "A Light in the Attic",
+          "width": 125,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/26/0c/260c6ae16bce31c8f8c95daddd9f4a1c.jpg",
+          "alt": "Tipping the Velvet",
+          "width": 99,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/3e/ef/3eef99c9d9adef34639f510662022830.jpg",
+          "alt": "Soumission",
+          "width": 101,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/32/51/3251cf3a3412f53f339e42cac2134093.jpg",
+          "alt": "Sharp Objects",
+          "width": 116,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/be/a5/bea5697f2534a2f86a3ef27b5a8c12a6.jpg",
+          "alt": "Sapiens: A Brief History of Humankind",
+          "width": 102,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/68/33/68339b4c9bc034267e1da611ab3b34f8.jpg",
+          "alt": "The Requiem Red",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/92/27/92274a95b7c251fea59a2b8a78275ab4.jpg",
+          "alt": "The Dirty Little Secrets of Getting Your Dream Job",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/3d/54/3d54940e57e662c4dd1f3ff00c78cc64.jpg",
+          "alt": "The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/66/88/66883b91f6804b2323c8369331cb7dd1.jpg",
+          "alt": "The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics",
+          "width": 102,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/58/46/5846057e28022268153beff6d352b06c.jpg",
+          "alt": "The Black Maria",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/be/f4/bef44da28c98f905a3ebec0b87be8530.jpg",
+          "alt": "Starving Hearts (Triangular Trade Trilogy, #1)",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/10/48/1048f63d3b5061cd2f424d20b3f9b666.jpg",
+          "alt": "Shakespeare's Sonnets",
+          "width": 91,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/5b/88/5b88c52633f53cacf162c15f4f823153.jpg",
+          "alt": "Set Me Free",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/94/b1/94b1b8b244bce9677c2f29ccc890d4d2.jpg",
+          "alt": "Scott Pilgrim's Precious Little Life (Scott Pilgrim #1)",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/81/c4/81c4a973364e17d01f217e1188253d5e.jpg",
+          "alt": "Rip it Up and Start Again",
+          "width": 98,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/54/60/54607fe8945897cdcced0044103b10b6.jpg",
+          "alt": "Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991",
+          "width": 103,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/55/33/553310a7162dfbc2c6d19a84da0df9e1.jpg",
+          "alt": "Olio",
+          "width": 117,
+          "height": 155
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/09/a3/09a3aef48557576e1a85ba7efea8ecb7.jpg",
+          "alt": "Mesaerion: The Best Science Fiction Stories 1800-1849",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/0b/bc/0bbcd0a6f4bcd81ccb1049a52736406e.jpg",
+          "alt": "Libertarianism for Beginners",
+          "width": 103,
+          "height": 154
+        },
+        {
+          "src": "https://books.toscrape.com/media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg",
+          "alt": "It's Only the Himalayas",
+          "width": 106,
+          "height": 155
         }
-      ]
-    },
-    {
-      "url": "https://quotes.toscrape.com/login",
-      "finalUrl": "https://quotes.toscrape.com/login",
-      "statusCode": 200,
-      "title": "Quotes to Scrape",
-      "description": "",
-      "headings": {
-        "h1": [
-          "Quotes to Scrape"
-        ],
-        "h2": [],
-        "h3": []
-      },
-      "text": "Quotes to Scrape\n Login\n Username\n Password",
-      "images": [],
+      ],
       "links": {
         "internal": [
-          "https://quotes.toscrape.com/",
-          "https://quotes.toscrape.com/login"
+          "https://books.toscrape.com/index.html",
+          "https://books.toscrape.com/catalogue/category/books_1/index.html",
+          "https://books.toscrape.com/catalogue/category/books/travel_2/index.html",
+          "https://books.toscrape.com/catalogue/category/books/mystery_3/index.html",
+          "https://books.toscrape.com/catalogue/category/books/historical-fiction_4/index.html",
+          "https://books.toscrape.com/catalogue/category/books/sequential-art_5/index.html",
+          "https://books.toscrape.com/catalogue/category/books/classics_6/index.html",
+          "https://books.toscrape.com/catalogue/category/books/philosophy_7/index.html",
+          "https://books.toscrape.com/catalogue/category/books/romance_8/index.html",
+          "https://books.toscrape.com/catalogue/category/books/womens-fiction_9/index.html",
+          "https://books.toscrape.com/catalogue/category/books/fiction_10/index.html",
+          "https://books.toscrape.com/catalogue/category/books/childrens_11/index.html",
+          "https://books.toscrape.com/catalogue/category/books/religion_12/index.html",
+          "https://books.toscrape.com/catalogue/category/books/nonfiction_13/index.html",
+          "https://books.toscrape.com/catalogue/category/books/music_14/index.html",
+          "https://books.toscrape.com/catalogue/category/books/default_15/index.html",
+          "https://books.toscrape.com/catalogue/category/books/science-fiction_16/index.html",
+          "https://books.toscrape.com/catalogue/category/books/sports-and-games_17/index.html",
+          "https://books.toscrape.com/catalogue/category/books/add-a-comment_18/index.html",
+          "https://books.toscrape.com/catalogue/category/books/fantasy_19/index.html",
+          "https://books.toscrape.com/catalogue/category/books/new-adult_20/index.html",
+          "https://books.toscrape.com/catalogue/category/books/young-adult_21/index.html",
+          "https://books.toscrape.com/catalogue/category/books/science_22/index.html",
+          "https://books.toscrape.com/catalogue/category/books/poetry_23/index.html",
+          "https://books.toscrape.com/catalogue/category/books/paranormal_24/index.html",
+          "https://books.toscrape.com/catalogue/category/books/art_25/index.html",
+          "https://books.toscrape.com/catalogue/category/books/psychology_26/index.html",
+          "https://books.toscrape.com/catalogue/category/books/autobiography_27/index.html",
+          "https://books.toscrape.com/catalogue/category/books/parenting_28/index.html",
+          "https://books.toscrape.com/catalogue/category/books/adult-fiction_29/index.html",
+          "https://books.toscrape.com/catalogue/category/books/humor_30/index.html",
+          "https://books.toscrape.com/catalogue/category/books/horror_31/index.html",
+          "https://books.toscrape.com/catalogue/category/books/history_32/index.html",
+          "https://books.toscrape.com/catalogue/category/books/food-and-drink_33/index.html",
+          "https://books.toscrape.com/catalogue/category/books/christian-fiction_34/index.html",
+          "https://books.toscrape.com/catalogue/category/books/business_35/index.html",
+          "https://books.toscrape.com/catalogue/category/books/biography_36/index.html",
+          "https://books.toscrape.com/catalogue/category/books/thriller_37/index.html",
+          "https://books.toscrape.com/catalogue/category/books/contemporary_38/index.html",
+          "https://books.toscrape.com/catalogue/category/books/spirituality_39/index.html",
+          "https://books.toscrape.com/catalogue/category/books/academic_40/index.html",
+          "https://books.toscrape.com/catalogue/category/books/self-help_41/index.html",
+          "https://books.toscrape.com/catalogue/category/books/historical_42/index.html",
+          "https://books.toscrape.com/catalogue/category/books/christian_43/index.html",
+          "https://books.toscrape.com/catalogue/category/books/suspense_44/index.html",
+          "https://books.toscrape.com/catalogue/category/books/short-stories_45/index.html",
+          "https://books.toscrape.com/catalogue/category/books/novels_46/index.html",
+          "https://books.toscrape.com/catalogue/category/books/health_47/index.html",
+          "https://books.toscrape.com/catalogue/category/books/politics_48/index.html",
+          "https://books.toscrape.com/catalogue/category/books/cultural_49/index.html",
+          "https://books.toscrape.com/catalogue/category/books/erotica_50/index.html",
+          "https://books.toscrape.com/catalogue/category/books/crime_51/index.html",
+          "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+          "https://books.toscrape.com/catalogue/tipping-the-velvet_999/index.html",
+          "https://books.toscrape.com/catalogue/soumission_998/index.html",
+          "https://books.toscrape.com/catalogue/sharp-objects_997/index.html",
+          "https://books.toscrape.com/catalogue/sapiens-a-brief-history-of-humankind_996/index.html",
+          "https://books.toscrape.com/catalogue/the-requiem-red_995/index.html",
+          "https://books.toscrape.com/catalogue/the-dirty-little-secrets-of-getting-your-dream-job_994/index.html",
+          "https://books.toscrape.com/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html",
+          "https://books.toscrape.com/catalogue/the-boys-in-the-boat-nine-americans-and-their-epic-quest-for-gold-at-the-1936-berlin-olympics_992/index.html",
+          "https://books.toscrape.com/catalogue/the-black-maria_991/index.html",
+          "https://books.toscrape.com/catalogue/starving-hearts-triangular-trade-trilogy-1_990/index.html",
+          "https://books.toscrape.com/catalogue/shakespeares-sonnets_989/index.html",
+          "https://books.toscrape.com/catalogue/set-me-free_988/index.html",
+          "https://books.toscrape.com/catalogue/scott-pilgrims-precious-little-life-scott-pilgrim-1_987/index.html",
+          "https://books.toscrape.com/catalogue/rip-it-up-and-start-again_986/index.html",
+          "https://books.toscrape.com/catalogue/our-band-could-be-your-life-scenes-from-the-american-indie-underground-1981-1991_985/index.html",
+          "https://books.toscrape.com/catalogue/olio_984/index.html",
+          "https://books.toscrape.com/catalogue/mesaerion-the-best-science-fiction-stories-1800-1849_983/index.html",
+          "https://books.toscrape.com/catalogue/libertarianism-for-beginners_982/index.html",
+          "https://books.toscrape.com/catalogue/its-only-the-himalayas_981/index.html",
+          "https://books.toscrape.com/catalogue/page-2.html"
         ],
-        "external": [
-          "https://www.goodreads.com/quotes",
-          "https://www.zyte.com/"
-        ]
+        "external": []
       },
       "depth": 1,
-      "parentUrl": "https://quotes.toscrape.com/search.aspx",
-      "screenshot": "/screenshots/cli/003_quotes_toscrape_com_login.png",
-      "errors": [],
-      "llmActions": [
-        {
-          "formSelector": "form:nth-of-type(1)",
-          "status": "skipped",
-          "reason": "Contains forbidden field type: password"
-        }
-      ]
-    },
-    {
-      "url": "https://quotes.toscrape.com/",
-      "finalUrl": "https://quotes.toscrape.com/",
-      "statusCode": 200,
-      "title": "Quotes to Scrape",
-      "description": "",
-      "headings": {
-        "h1": [
-          "Quotes to Scrape"
-        ],
-        "h2": [
-          "Top Ten tags"
-        ],
-        "h3": []
-      },
-      "text": "Quotes to Scrape\n Login\n “The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”\n by Albert Einstein\n (about)\n Tags:\n change\n deep-thoughts\n thinking\n world\n “It is our choices, Harry, that show what we truly are, far more than our abilities.”\n by J.K. Rowling\n (about)\n Tags:\n abilities\n choices\n “There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”\n by Albert Einstein\n (about)\n Tags:\n inspirational\n life\n live\n miracle\n miracles\n “The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”\n by Jane Austen\n (about)\n Tags:\n aliteracy\n books\n classic\n humor\n “Imperfection is beauty, madness is genius and it's better to be absolutely ridiculous than absolutely boring.”\n by Marilyn Monroe\n (about)\n Tags:\n be-yourself\n inspirational\n “Try not to become a man of success. Rather become a man of value.”\n by Albert Einstein\n (about)\n Tags:\n adulthood\n success\n value\n “It is better to be hated for what you are than to be loved for what you are not.”\n by André Gide\n (about)\n Tags:\n life\n love\n “I have not failed. I've just found 10,000 ways that won't work.”\n by Thomas A. Edison\n (about)\n Tags:\n edison\n failure\n inspirational\n paraphrased\n “A woman is like a tea bag; you never know how strong it is until it's in hot water.”\n by Eleanor Roosevelt\n (about)\n Tags:\n misattributed-eleanor-roosevelt\n “A day without sunshine is like, you know, night.”\n by Steve Martin\n (about)\n Tags:\n humor\n obvious\n simile\n Top Ten tags\n love\n inspirational\n life\n humor\n books\n reading\n friendship\n friends\n truth\n simile",
-      "images": [],
-      "links": {
-        "internal": [
-          "https://quotes.toscrape.com/",
-          "https://quotes.toscrape.com/login",
-          "https://quotes.toscrape.com/author/Albert-Einstein",
-          "https://quotes.toscrape.com/tag/change/page/1",
-          "https://quotes.toscrape.com/tag/deep-thoughts/page/1",
-          "https://quotes.toscrape.com/tag/thinking/page/1",
-          "https://quotes.toscrape.com/tag/world/page/1",
-          "https://quotes.toscrape.com/author/J-K-Rowling",
-          "https://quotes.toscrape.com/tag/abilities/page/1",
-          "https://quotes.toscrape.com/tag/choices/page/1",
-          "https://quotes.toscrape.com/tag/inspirational/page/1",
-          "https://quotes.toscrape.com/tag/life/page/1",
-          "https://quotes.toscrape.com/tag/live/page/1",
-          "https://quotes.toscrape.com/tag/miracle/page/1",
-          "https://quotes.toscrape.com/tag/miracles/page/1",
-          "https://quotes.toscrape.com/author/Jane-Austen",
-          "https://quotes.toscrape.com/tag/aliteracy/page/1",
-          "https://quotes.toscrape.com/tag/books/page/1",
-          "https://quotes.toscrape.com/tag/classic/page/1",
-          "https://quotes.toscrape.com/tag/humor/page/1",
-          "https://quotes.toscrape.com/author/Marilyn-Monroe",
-          "https://quotes.toscrape.com/tag/be-yourself/page/1",
-          "https://quotes.toscrape.com/tag/adulthood/page/1",
-          "https://quotes.toscrape.com/tag/success/page/1",
-          "https://quotes.toscrape.com/tag/value/page/1",
-          "https://quotes.toscrape.com/author/Andre-Gide",
-          "https://quotes.toscrape.com/tag/love/page/1",
-          "https://quotes.toscrape.com/author/Thomas-A-Edison",
-          "https://quotes.toscrape.com/tag/edison/page/1",
-          "https://quotes.toscrape.com/tag/failure/page/1",
-          "https://quotes.toscrape.com/tag/paraphrased/page/1",
-          "https://quotes.toscrape.com/author/Eleanor-Roosevelt",
-          "https://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1",
-          "https://quotes.toscrape.com/author/Steve-Martin",
-          "https://quotes.toscrape.com/tag/obvious/page/1",
-          "https://quotes.toscrape.com/tag/simile/page/1",
-          "https://quotes.toscrape.com/page/2",
-          "https://quotes.toscrape.com/tag/love",
-          "https://quotes.toscrape.com/tag/inspirational",
-          "https://quotes.toscrape.com/tag/life",
-          "https://quotes.toscrape.com/tag/humor",
-          "https://quotes.toscrape.com/tag/books",
-          "https://quotes.toscrape.com/tag/reading",
-          "https://quotes.toscrape.com/tag/friendship",
-          "https://quotes.toscrape.com/tag/friends",
-          "https://quotes.toscrape.com/tag/truth",
-          "https://quotes.toscrape.com/tag/simile"
-        ],
-        "external": [
-          "https://www.goodreads.com/quotes",
-          "https://www.zyte.com/"
-        ]
-      },
-      "depth": 1,
-      "parentUrl": "https://quotes.toscrape.com/search.aspx",
-      "screenshot": "/screenshots/cli/003_quotes_toscrape_com_.png",
+      "parentUrl": "https://books.toscrape.com/",
+      "screenshot": "/screenshots/cli/002_books_toscrape_com_index_html.png",
       "errors": [],
       "llmActions": []
     }
   ],
   "tree": {
-    "url": "https://quotes.toscrape.com/filter.aspx",
+    "url": "https://books.toscrape.com/",
     "children": [
       {
-        "url": "https://quotes.toscrape.com/search.aspx",
-        "children": [
-          {
-            "url": "https://quotes.toscrape.com/login",
-            "children": []
-          },
-          {
-            "url": "https://quotes.toscrape.com/",
-            "children": []
-          }
-        ]
+        "url": "https://books.toscrape.com/index.html",
+        "children": []
       }
     ]
   }
